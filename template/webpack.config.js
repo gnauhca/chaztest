@@ -1,9 +1,12 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: 'index.js',
+    entry: {
+        'index': 'index.js',
+    },
     output: {
-        'filename': 'entry.js',
+        'path': './dist',
+        'filename': '[name].js'
     },
     resolve: {
         root: process.cwd(),
@@ -17,9 +20,11 @@ module.exports = {
             { test: /.*\.scss$/, loaders: ['style', 'css', 'sass'] },
             {
                 test: /.*?\.js$/,
-                exclude: /node_modules/,
                 loader: 'babel', 
-                query: { presets: ['es2015'] }
+                query: { 
+                    presets: [ 'es2015'],
+                    plugins: ["transform-object-assign"]
+                }
             }
         ]
     },
