@@ -1,6 +1,6 @@
 {
-  "name": "test-scaffold",
-  "version": "1.0.1",
+  "name": "chaztest",
+  "version": "1.0.3",
   "description": "test-scaffold",
   "main": "index.js",
   "scripts": {
