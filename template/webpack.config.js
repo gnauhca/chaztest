@@ -1,38 +1,31 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: {
-        'index': 'index.js',
+        'index': './index.js',
     },
     output: {
-        'path': './dist',
+        'path': path.resolve(__dirname, './dist'),
         'filename': '[name].js'
-    },
-    resolve: {
-        root: process.cwd(),
-        modulesDirectories: ['node_modules']
     },
 
     devtool: 'source-map',
 
     module: {
-        loaders: [
-            { test: /.*\.scss$/, loaders: ['style', 'css', 'sass'] },
+        rules: [
             {
-                test: /.*?\.js$/,
-                loader: 'babel', 
-                query: { 
-                    presets: [ 'es2015'],
-                    plugins: ["transform-object-assign"]
-                }
+                test: /.*\.scss$/, 
+                use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
 
     devServer: {
-        'content-base': '/',
-        'inline': true,
-        'host': '0.0.0.0',
-        'port': 9123
+        publicPath: '/dist',
+        disableHostCheck: true,
+        contentBase: __dirname,
+        host: '0.0.0.0',
+        port: 9123
     }
 }
